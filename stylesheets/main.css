@@ -500,6 +500,7 @@ hr {
         line-height:24px; } }
 	@media screen and (max-width: 520px) {
       .tile.tile-65536 .tile-inner {
+		background-image: url("../images/qin.jpg") !important;
         font-size: 20px;
         line-height:24px; } }
 
