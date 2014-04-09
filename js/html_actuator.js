@@ -153,19 +153,19 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 
 HTMLActuator.prototype.message = function (won) {
   var mytxt = new Array(14);
-  mytxt[0]="小子，那些人值得你为他们卖命吗？";
-  mytxt[1]="晋磊！拿命来！";
-  mytxt[2]="少恭，你还嫩了点！";
+  mytxt[0]="小子，替别人死值得吗？";
+  mytxt[1]="我说过……做鬼也不会放过你！";
+  mytxt[2]="今日尔等注定要成为吾剑下亡魂！";
   mytxt[3]="我很黄！我很暴力！";
   mytxt[4]="无异，快把你家馋鸡带走！";
-  mytxt[5]="吾友，你弱了！";
+  mytxt[5]="凡人，面对天界战龙胆敢神识恍惚！";
   mytxt[6]="我甩发，我自信！";
   mytxt[7]="擅闯青玉坛者死！";
   mytxt[8]="擅闯幽都者死！";
   mytxt[9]="你还是乖乖留在幽都吧！";
   mytxt[10]="徒儿，随为师回山！";
   mytxt[11]="挣扎吧，在血和暗的深渊里！";
-  mytxt[12]="我要把你们全部化为焦冥……";
+  mytxt[12]="呵呵，游戏之举差不多也该到此为止。";
   
   var text3 = function (m) { var r = 0; while (m > 1) r++, m >>= 1; return r; }
   var type    = won ? "game-won" : "game-over";
