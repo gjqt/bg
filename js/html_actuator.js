@@ -1,4 +1,4 @@
-﻿function HTMLActuator() {
+function HTMLActuator() {
   this.tileContainer    = document.querySelector(".tile-container");
   this.scoreContainer   = document.querySelector(".score-container");
   this.bestContainer    = document.querySelector(".best-container");
@@ -26,10 +26,11 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
     self.updateBestScore(metadata.bestScore);
 
     if (metadata.terminated) {
-      if (metadata.over) {
-        self.message(false); // You lose
-      } else if (metadata.won) {
+	  if (metadata.won) {
         self.message(true); // You win!
+      }
+	  else if (metadata.over) {
+        self.message(false); // You lose
       }
     }
 
@@ -37,7 +38,7 @@ HTMLActuator.prototype.actuate = function (grid, metadata) {
 };
 
 // Continues the game (both restart and keep playing)
-HTMLActuator.prototype.continue = function () {
+HTMLActuator.prototype.continueGame = function () {
   if (typeof ga !== "undefined") {
     ga("send", "event", "game", "restart");
   }
@@ -52,7 +53,7 @@ HTMLActuator.prototype.clearContainer = function (container) {
 };
 
 HTMLActuator.prototype.addTile = function (tile) {
-  var text=new Array(18);
+  var text = new Array(18);
   text[0] = " ";
   text[1] = "翻云<br>寨主";
   text[2] = "藤妖";
@@ -70,9 +71,11 @@ HTMLActuator.prototype.addTile = function (tile) {
   text[14] = "暗云<br>奔霄";
   text[15] = "欧阳<br>少恭";
   text[16] = " ";
+  
   var self = this;
-  var text2 = function (n) { var r = 0; while (n > 1) r++, n >>= 1; return r; }
 
+  var text2 = function (n) { var r = 0; while (n > 1) r++, n >>= 1; return r; }
+  
   var wrapper   = document.createElement("div");
   var inner     = document.createElement("div");
   var position  = tile.previousPosition || { x: tile.x, y: tile.y };
@@ -149,13 +152,13 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 };
 
 HTMLActuator.prototype.message = function (won) {
-  var mytxt=new Array(14);
+  var mytxt = new Array(14);
   mytxt[0]="小子，那些人值得你为他们卖命吗？";
   mytxt[1]="晋磊！拿命来！";
   mytxt[2]="少恭，你还嫩了点！";
   mytxt[3]="我很黄！我很暴力！";
   mytxt[4]="无异，快把你家馋鸡带走！";
-  mytxt[5]="凡人，面对天界战龙胆敢神识恍惚！";
+  mytxt[5]="吾友，你弱了！";
   mytxt[6]="我甩发，我自信！";
   mytxt[7]="擅闯青玉坛者死！";
   mytxt[8]="擅闯幽都者死！";
@@ -163,10 +166,10 @@ HTMLActuator.prototype.message = function (won) {
   mytxt[10]="徒儿，随为师回山！";
   mytxt[11]="挣扎吧，在血和暗的深渊里！";
   mytxt[12]="我要把你们全部化为焦冥……";
-
+  
   var text3 = function (m) { var r = 0; while (m > 1) r++, m >>= 1; return r; }
   var type    = won ? "game-won" : "game-over";
-  var message = won ? "恭喜你打败了欧阳少恭！" : mytxt[text3(maxscore)-3];
+  var message = won ? "恭喜你打败了欧阳少恭！" : mytxt[text3(maxscore)-2];
 
   if (typeof ga !== "undefined") {
     ga("send", "event", "game", "end", type, this.score);
@@ -177,7 +180,6 @@ HTMLActuator.prototype.message = function (won) {
 
   this.clearContainer(this.sharingContainer);
   this.sharingContainer.appendChild(this.scoreTweetButton());
-  twttr.widgets.load();
 };
 
 HTMLActuator.prototype.clearMessage = function () {
@@ -190,8 +192,8 @@ HTMLActuator.prototype.scoreTweetButton = function () {
   var text = "我在2048古剑版中得了" + this.score + "分 , 你能得多少分？";
   var tweet = document.createElement("a");
   tweet.classList.add("twitter-share-button");
-  tweet.setAttribute("href", "http://service.weibo.com/share/share.php?url=http://gjqt.github.io/mainRole&title="+text); 
-  tweet.textContent = "分享到微博"; 
+  tweet.setAttribute("href", "http://service.weibo.com/share/share.php?url=http://bjdc.github.io/egg&title="+text); 
+  tweet.textContent = "分享到微博";
 
   return tweet;
 };
