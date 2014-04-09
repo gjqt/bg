@@ -10,15 +10,16 @@ function GameManager(size, InputManager, Actuator, StorageManager) {
 
   this.inputManager.on("move", this.move.bind(this));
   this.inputManager.on("restart", this.restart.bind(this));
-
+  
+  maxscore = localStorage.maxscore;
+  
   this.setup();
 }
 
 // Restart the game
 GameManager.prototype.restart = function () {
   maxscore = 2;
-  var url = "url(images/2.jpg)";
-  document.getElementById("mainBg").style.backgroundImage = url;
+  
   this.storageManager.clearGameState();
   this.actuator.continueGame(); // Clear the game won/lost message
   this.setup(); 
@@ -35,6 +36,9 @@ GameManager.prototype.isGameTerminated = function () {
 
 // Set up the game
 GameManager.prototype.setup = function () {
+  var url = "url(images/" + maxscore + ".jpg)";
+  document.getElementById("mainBg").style.backgroundImage = url;
+  
   var previousState = this.storageManager.getGameState();
 
   // Reload the game from a previous game if present
@@ -180,6 +184,7 @@ GameManager.prototype.move = function (direction) {
 			var url = "url(images/" + merged.value + ".jpg)";
 			document.getElementById("mainBg").style.backgroundImage = url;
             maxscore = merged.value;
+			localStorage.maxscore = maxscore;
 		  }
 		  
           // The mighty 2048 tile
