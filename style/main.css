@@ -205,6 +205,21 @@ hr {
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
+.game-nandu {
+  display: none;
+  position: absolute;
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(238, 228, 218, 0.73);
+  z-index: 101;
+  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  text-align: center; }
+  
 .game-message {
   display: none;
   position: absolute;
@@ -724,6 +739,13 @@ hr {
   .container {
     width: 280px;
     margin: 0 auto; }
+	
+  .game-nandu {
+	display: none;
+	position: absolute;
+	top: 0;
+	width: auto;
+    padding-top: 50px; }
 
   .score-container, .best-container {
     margin-top: 0;
